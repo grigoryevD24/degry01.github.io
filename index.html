@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация | Лабораторная работа №4</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      margin: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    p.subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: gray;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #2575fc;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1a5ed9;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      display: none;
+    }
+
+    .success {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Регистрация</h2>
+  <p class="subtitle">Тест юзабилити</p>
+
+  <input type="text" id="name" placeholder="Имя">
+  <div class="error" id="nameError">Введите имя</div>
+
+  <input type="email" id="email" placeholder="Email">
+  <div class="error" id="emailError">Введите корректный email</div>
+
+  <input type="password" id="password" placeholder="Пароль">
+  <div class="error" id="passError">Минимум 6 символов</div>
+
+  <button onclick="register()">Зарегистрироваться</button>
+
+  <div class="success" id="successMsg">
+    ✅ Регистрация успешна!
+  </div>
+
+  <footer>
+    Организация: Григорьев Дмитрий 23з
+  </footer>
+</div>
+
+<script>
+  function register() {
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let valid = true;
+
+    // Сброс ошибок
+    document.querySelectorAll(".error").forEach(e => e.style.display = "none");
+
+    if (name.trim() === "") {
+      document.getElementById("nameError").style.display = "block";
+      valid = false;
+    }
+
+    if (!email.includes("@")) {
+      document.getElementById("emailError").style.display = "block";
+      valid = false;
+    }
+
+    if (password.length < 6) {
+      document.getElementById("passError").style.display = "block";
+      valid = false;
+    }
+
+    if (valid) {
+      document.getElementById("successMsg").style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>
